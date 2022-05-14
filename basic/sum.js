@@ -1,4 +1,5 @@
 // 回傳 1 + 2 + ... + n 的結果
+
 //(變數的名稱)
 function total(10) {
   // return 結果
@@ -20,6 +21,24 @@ function sum2(n) {
 function func(sum, item){
   return sum + item
 }
+
+function sum(n) {
+    // return 結果
+    let result = 0;
+for (let i=1; i<=n ;i++){
+    result += i;
+}
+    return result;
+}
+
+// function sum2(n) {
+//     return ((n+1)*n)/2;   
+// }
+
+// function sum3(n){
+//     [1,2,3,...n].reduce((sum,item) => sum + item ,0);
+// }
+
 
 
 function sum3(n) {
