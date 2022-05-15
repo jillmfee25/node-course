@@ -26,7 +26,7 @@ let doWork = function (job, timer) {
         let resultHW = await doWork("寫作業", 3000);
         console.log(resultHW);
     }catch(e){
-        console.log("這裡是try...catch", e);
+        console.error("這裡是try...catch", e);
     }
 }
 main();
