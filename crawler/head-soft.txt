@@ -1,0 +1,29 @@
+https://www.howtogeek.com/devops/how-to-remove-a-commit-from-github/
+
+先到github 看commit 紀錄
+Git 的 Reset 指令用中文來說比較像是「前往」，而 git reset 指令可以搭配參數使用，常見到的參數，是 –soft 以及 –hard 模式。
+
+git reset –soft 模式
+
+這個模式下的 reset，工作目錄跟暫存區的檔案都不會被丟掉，所以看起來就只有 HEAD 的移動而已。也因此，Commit 拆出來的檔案會直接放在暫存區。
+
+
+========== 回復步驟-git bash
+
+$ git reset --soft HEAD~  
+
+ git log
+
+ $ git st
+
+ $ git log
+
+ $ git st
+
+ $ git add .
+
+ $ git st
+
+ $ git ci -m "add crawler"
+
+ $ gig

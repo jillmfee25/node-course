@@ -1,17 +1,19 @@
-//read stock no from mysql database
+// read stock no from mysql database
+// fetch data by stock id
 
-//mysql2是一個第三方套件
-//npm i mysql
-//引用進來
-const mysql = require("mysql2/promise");
+const axios = require('axios');
 
-// const dotenv = rquire('dotenv');
+// mysql2 是一個第三方套件
+// npm i mysql2
+// 引用進來
+const mysql = require('mysql2/promise');
+// const dotenv = require('dotenv');
 // dotenv.config();
-// 幫我們去把.env 裡的變數讀進來
-require("dotenv").config();
+// 幫我們去把 .env 裡的變數讀進來
+require('dotenv').config();
 
 (async () => {
-  console.log("DB_HOST", process.env.DB_HOST);
+  console.log('DB_HOST', process.env.DB_HOST);
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -20,7 +22,7 @@ require("dotenv").config();
     database: process.env.DB_NAME,
   });
 
-  let [data, fields] = await connection.execute("SELECT * FROM stocks");
+  let [data, fields] = await connection.execute('SELECT * FROM stocks');
   // console.log(data);
   // results [
   //     [],
@@ -43,18 +45,20 @@ require("dotenv").config();
   /****************************************** */
 
   /************* map 版本 ************************** */
+  let stockIds = data.map((stock) => {
+    return stock.id;
+  });
+  console.log('stockIds', stockIds);
+
   let mapResult = data.map(async (stock) => {
-    let response = await axios.get(
-      "https://www.twse.com.tw/exchangeReport/STOCK_DAY",
-      {
-        params: {
-          // 設定 query string
-          response: "json",
-          date: "20220301",
-          stockNo: stock.id,
-        },
-      }
-    );
+    let response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY', {
+      params: {
+        // 設定 query string
+        response: 'json',
+        date: '20220301',
+        stockNo: stock.id,
+      },
+    });
     return response.data;
   });
 
